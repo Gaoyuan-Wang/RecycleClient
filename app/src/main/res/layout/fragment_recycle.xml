@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.percentlayout.widget.PercentRelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/fragment_recycle_date"
+        android:textSize="20sp"
+        android:textColor="#0B8B19"
+        android:layout_centerHorizontal="true"
+        app:layout_marginTopPercent="30%" />
+
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/fragment_recycle_time"
+        android:textSize="20sp"
+        android:textColor="#0B8B19"
+        android:layout_centerHorizontal="true"
+        app:layout_marginTopPercent="40%" />
+
+    <EditText
+        android:id="@+id/address"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_centerHorizontal="true"
+        app:layout_marginTopPercent="60%"
+        app:layout_heightPercent="10%"
+        app:layout_widthPercent="80%"
+        android:hint="@string/fragment_recycle_address"/>
+
+    <Button
+        android:id="@+id/appointment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#0B8B19"
+        android:layout_centerHorizontal="true"
+        app:layout_marginTopPercent="80%"
+        android:text="@string/fragment_recycle_appointment"/>
+
+</androidx.percentlayout.widget.PercentRelativeLayout>
