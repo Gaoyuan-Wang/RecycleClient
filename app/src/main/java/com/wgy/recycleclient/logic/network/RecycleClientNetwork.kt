@@ -15,7 +15,7 @@ object RecycleClientNetwork {
 
     private val appointmentService = ServiceCreator.create<AppointmentService>()
 
-    suspend fun makeAppointment(date: String,time: String,address: String) = appointmentService.makeAppointment(date,time,address).await()
+    suspend fun makeAppointment(username: String,date: String,time: String,address: String) = appointmentService.makeAppointment(username,date,time,address).await()
 
     private suspend fun <T> Call<T>.await(): T {
         return suspendCoroutine { continuation ->

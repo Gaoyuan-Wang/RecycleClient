@@ -8,12 +8,14 @@ import retrofit2.http.Query
 
 interface AppointmentService {
     /**
-     * @param date    预定日期
-     * @param time    预定时间
-     * @param address 地址
+     * @param username 用户名
+     * @param date     预定日期
+     * @param time     预定时间
+     * @param address  地址
      */
     @GET("Appointment.json")
     fun makeAppointment(
+        @Query("username") username: String,
         @Query("date") date: String,
         @Query("time") time: String,
         @Query("address")address: String

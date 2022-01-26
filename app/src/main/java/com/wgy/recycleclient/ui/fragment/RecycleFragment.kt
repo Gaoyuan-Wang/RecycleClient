@@ -18,7 +18,7 @@ import com.wgy.recycleclient.logic.model.Appointment
 import com.wgy.recycleclient.logic.viewmodel.HomeViewModel
 import kotlinx.android.synthetic.main.fragment_recycle.*
 
-
+//预约界面
 @RequiresApi(Build.VERSION_CODES.N)
 class RecycleFragment: Fragment() {
     private val viewModel by lazy { ViewModelProvider(this).get(HomeViewModel::class.java)}
@@ -36,7 +36,7 @@ class RecycleFragment: Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         initListener()
-
+        //是否预约成功
         viewModel.isSuccessful.observe(viewLifecycleOwner, { result ->
             val isSuccessful = result.getOrNull()
             if (isSuccessful != null) {
@@ -46,6 +46,7 @@ class RecycleFragment: Fragment() {
     }
 
     private fun initListener(){
+        //选择日期
         date.setOnClickListener{
 
             val c = Calendar.getInstance()
@@ -74,6 +75,7 @@ class RecycleFragment: Fragment() {
             dialog.show()
         }
 
+        //选择时间
         time.setOnClickListener{
             val dialog = TimePickerDialog(
                 requireActivity(),
@@ -89,15 +91,15 @@ class RecycleFragment: Fragment() {
             dialog.show()
         }
 
+        //预约
         appointment.setOnClickListener{
             viewModel.address = address.text.toString()
-            viewModel.appointment = Appointment(viewModel.date, viewModel.time, viewModel.address)
+            viewModel.appointment = Appointment(viewModel.userName, viewModel.date, viewModel.time, viewModel.address)
 
             AlertDialog.Builder(requireActivity()).apply {
                 setCancelable(false)
                 setMessage("请您确定预约信息：\n时间：${viewModel.date} ${viewModel.time}\n地址：${viewModel.address}")
                 setPositiveButton("确 定"){ _, _->
-                    //Toast.makeText(activity, "您已成功预约！", Toast.LENGTH_SHORT).show()
                     viewModel.makeAppointment(viewModel.appointment)
                 }
                 setNegativeButton("取 消"){ _, _-> }

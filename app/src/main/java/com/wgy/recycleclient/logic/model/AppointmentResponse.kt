@@ -4,6 +4,7 @@ data class AppointmentResponse (
     val isSuccessful: Boolean)
 
 data class Appointment(
+    val username: String,
     val date: String,
     val time: String,
     val address: String

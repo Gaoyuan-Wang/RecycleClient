@@ -25,9 +25,9 @@ object Repository {
     }
 
     //提交预定数据返回给HomeViewModel
-    fun makeAppointment(date: String,time: String,address: String) = liveData(Dispatchers.IO){
+    fun makeAppointment(username: String,date: String,time: String,address: String) = liveData(Dispatchers.IO){
         val result = try {
-            val appointmentResponse = RecycleClientNetwork.makeAppointment(date, time, address)
+            val appointmentResponse = RecycleClientNetwork.makeAppointment(username, date, time, address)
             if (appointmentResponse.isSuccessful){
                 Result.success(appointmentResponse.isSuccessful)
             }else{
