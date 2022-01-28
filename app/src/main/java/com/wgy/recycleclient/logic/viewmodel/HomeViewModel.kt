@@ -22,9 +22,9 @@ class HomeViewModel: ViewModel() {
     var appointmentLiveData = MutableLiveData<Appointment>()
     lateinit var appointment: Appointment
 
-    val isSuccessful = Transformations.switchMap(appointmentLiveData){ appointment->
-        Repository.makeAppointment(appointment.username,appointment.date, appointment.time, appointment.address)
-    }
+//    val isSuccessful = Transformations.switchMap(appointmentLiveData){ appointment->
+//        Repository.appointOrder(appointment.username,appointment.date, appointment.time, appointment.address)
+//    }
 
     fun makeAppointment(appointment: Appointment){
         appointmentLiveData.value = appointment
