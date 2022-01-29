@@ -14,7 +14,7 @@ data class Activity(
 
 data class CheckAllActivityResponse(
         val status: Int,
-        val activity: List<AllActivity>
+        val activities: List<AllActivity>
 )
 
 data class AllActivity(

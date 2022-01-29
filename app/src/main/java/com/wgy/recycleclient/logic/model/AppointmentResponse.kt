@@ -19,7 +19,7 @@ data class Appointment(
 
 data class CheckOrderResponse(
         val status: Int,
-        val order: List<Order>
+        val orders: List<Order>
 )
 
 data class Order(

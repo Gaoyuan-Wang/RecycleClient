@@ -10,7 +10,7 @@ class LoginViewModel: ViewModel() {
     private var loginLiveData = MutableLiveData<Login>()
     lateinit var login : Login
 
-    val isAccessible = Transformations.switchMap(loginLiveData){
+    val loginResult = Transformations.switchMap(loginLiveData){
         login -> Repository.getLoginData(login.username,login.password)
     }
 

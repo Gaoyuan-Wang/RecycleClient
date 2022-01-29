@@ -1,7 +1,6 @@
 package com.wgy.recycleclient.logic
 
 import androidx.lifecycle.liveData
-import com.wgy.recycleclient.logic.model.*
 import com.wgy.recycleclient.logic.network.RecycleClientNetwork
 import kotlinx.coroutines.Dispatchers
 import kotlin.coroutines.CoroutineContext
@@ -12,7 +11,7 @@ object Repository {
     fun getLoginData(username: String,password: String) = fire(Dispatchers.IO){
         val loginResponse = RecycleClientNetwork.getLoginData(username, password)
         if (loginResponse.isAccessible){
-            Result.success(loginResponse.isAccessible)
+            Result.success(loginResponse.id)
         }else{
             Result.failure(RuntimeException("Response accessibility is ${loginResponse.isAccessible}"))
         }
@@ -31,7 +30,7 @@ object Repository {
     fun checkOrder(id: String) = fire(Dispatchers.IO){
         val checkOrderResponse = RecycleClientNetwork.checkOrder(id)
         if (1 == checkOrderResponse.status){
-            Result.success(checkOrderResponse.status)
+            Result.success(checkOrderResponse.orders)
         }else{
             Result.failure(RuntimeException("Response code is ${checkOrderResponse.status}"))
         }
@@ -58,7 +57,7 @@ object Repository {
     fun checkAllActivity(rid: String) = fire(Dispatchers.IO){
         val checkAllActivityResponse = RecycleClientNetwork.checkAllActivity(rid)
         if (1 == checkAllActivityResponse.status){
-            Result.success(checkAllActivityResponse.status)
+            Result.success(checkAllActivityResponse.activities)
         }else {
             Result.failure(RuntimeException("Response code is ${checkAllActivityResponse.status}"))
         }

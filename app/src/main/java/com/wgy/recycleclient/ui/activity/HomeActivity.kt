@@ -7,7 +7,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager.widget.ViewPager.OnPageChangeListener
 import com.wgy.recycleclient.BaseActivity
-import com.wgy.recycleclient.ui.HomeFragmentAdapter
+import com.wgy.recycleclient.ui.adapter.HomeFragmentAdapter
 import com.wgy.recycleclient.R
 import com.wgy.recycleclient.logic.viewmodel.HomeViewModel
 import com.wgy.recycleclient.ui.fragment.ActivityFragment

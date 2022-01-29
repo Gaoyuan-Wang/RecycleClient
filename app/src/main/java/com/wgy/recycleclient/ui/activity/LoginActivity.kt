@@ -45,20 +45,20 @@ class LoginActivity : BaseActivity() {
         //点击登录按钮
         login.setOnClickListener {
             //获取用户名与密码并发送至服务器
-//            viewModel.login = Login(username.text.toString(),password.text.toString())
-//            viewModel.getLoginData(viewModel.login)
+            viewModel.login = Login(username.text.toString(),password.text.toString())
+            viewModel.getLoginData(viewModel.login)
             //以下两行为测试代码，正式运行时删除
-            intent= Intent(this,HomeActivity::class.java)
-            startActivity(intent)
+//            intent= Intent(this,HomeActivity::class.java)
+//            startActivity(intent)
         }
 
-        viewModel.isAccessible.observe(this, { result ->
-            val isAccessible = result.getOrNull()
-            Toast.makeText(this,isAccessible.toString(), Toast.LENGTH_SHORT).show()
-            if (isAccessible as Boolean){
-                //存储登录的用户名至RegisterAccount文件
+        viewModel.loginResult.observe(this, { result ->
+            val loginResult = result.getOrNull()
+            Toast.makeText(this,loginResult.toString(), Toast.LENGTH_SHORT).show()
+            if (loginResult != null){
+                //存储登录的用户ID至RegisterAccount文件
                 val editor = getSharedPreferences("RegisterAccount", MODE_PRIVATE).edit()
-                editor.putString("UserName",username.text.toString())
+                editor.putString("id",loginResult.toString())
                 editor.apply()
                 username.setText("")
                 password.setText("")

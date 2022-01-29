@@ -32,10 +32,21 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_centerHorizontal="true"
-        app:layout_marginTopPercent="60%"
+        app:layout_marginTopPercent="50%"
         app:layout_heightPercent="10%"
         app:layout_widthPercent="80%"
         android:hint="@string/fragment_recycle_address"/>
+
+    <EditText
+        android:id="@+id/amount"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_centerHorizontal="true"
+        android:inputType="number"
+        app:layout_marginTopPercent="60%"
+        app:layout_heightPercent="10%"
+        app:layout_widthPercent="80%"
+        android:hint="@string/fragment_recycle_amount"/>
 
     <Button
         android:id="@+id/appointment"
@@ -43,7 +54,16 @@
         android:layout_height="wrap_content"
         android:backgroundTint="#0B8B19"
         android:layout_centerHorizontal="true"
-        app:layout_marginTopPercent="80%"
+        app:layout_marginTopPercent="70%"
         android:text="@string/fragment_recycle_appointment"/>
 
+    <TextView
+        android:id="@+id/cancelOrder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/fragment_recycle_cancel_order"
+        android:textSize="20sp"
+        android:textColor="#0B8B19"
+        android:layout_centerHorizontal="true"
+        app:layout_marginTopPercent="80%" />
 </androidx.percentlayout.widget.PercentRelativeLayout>

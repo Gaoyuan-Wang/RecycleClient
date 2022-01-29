@@ -37,7 +37,7 @@ class RecycleFragment: Fragment() {
 
         initListener()
         //是否预约成功
-        viewModel.isSuccessful.observe(viewLifecycleOwner, { result ->
+        viewModel.appointIsSuccessful.observe(viewLifecycleOwner, { result ->
             val isSuccessful = result.getOrNull()
             if (isSuccessful != null) {
                 Toast.makeText(activity, "您已成功预约！", Toast.LENGTH_SHORT).show()
@@ -93,14 +93,15 @@ class RecycleFragment: Fragment() {
 
         //预约
         appointment.setOnClickListener{
-            viewModel.address = address.text.toString()
-            viewModel.appointment = Appointment(viewModel.userName, viewModel.date, viewModel.time, viewModel.address)
+            viewModel.location = address.text.toString()
+            viewModel.amount = Integer.parseInt(amount.text.toString())
+            viewModel.appointment = Appointment(0,viewModel.id,viewModel.location, viewModel.date + "-" + viewModel.time, viewModel.amount, 2, 0)
 
             AlertDialog.Builder(requireActivity()).apply {
                 setCancelable(false)
-                setMessage("请您确定预约信息：\n时间：${viewModel.date} ${viewModel.time}\n地址：${viewModel.address}")
+                setMessage("请您确定预约信息：\n时间：${viewModel.date} ${viewModel.time}\n地址：${viewModel.location}\n数量：${viewModel.amount}")
                 setPositiveButton("确 定"){ _, _->
-                    viewModel.makeAppointment(viewModel.appointment)
+                    viewModel.appointOrder(viewModel.appointment)
                 }
                 setNegativeButton("取 消"){ _, _-> }
                 show()

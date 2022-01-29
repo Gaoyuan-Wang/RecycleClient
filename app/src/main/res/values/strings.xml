@@ -9,4 +9,7 @@
     <string name="personal_fragment_information">信息中心</string>
     <string name="personal_fragment_exit">退出当前用户</string>
     <string name="personal_fragment_modify">点击头像个人信息</string>
+    <string name="fragment_recycle_amount">请输入回收数量</string>
+    <string name="fragment_recycle_cancel_order">取消预约</string>
+    <string name="fragment_activity_activity_id">输入活动编号</string>
 </resources>
