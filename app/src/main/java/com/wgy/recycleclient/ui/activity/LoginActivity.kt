@@ -45,11 +45,11 @@ class LoginActivity : BaseActivity() {
         //点击登录按钮
         login.setOnClickListener {
             //获取用户名与密码并发送至服务器
-            viewModel.login = Login(username.text.toString(),password.text.toString())
-            viewModel.getLoginData(viewModel.login)
+//            viewModel.login = Login(username.text.toString(),password.text.toString())
+//            viewModel.getLoginData(viewModel.login)
             //以下两行为测试代码，正式运行时删除
-//            intent= Intent(this,HomeActivity::class.java)
-//            startActivity(intent)
+            intent= Intent(this,HomeActivity::class.java)
+            startActivity(intent)
         }
 
         viewModel.loginResult.observe(this, { result ->
