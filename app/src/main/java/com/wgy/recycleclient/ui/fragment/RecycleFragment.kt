@@ -1,7 +1,9 @@
 package com.wgy.recycleclient.ui.fragment
 
+import android.app.Application
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
+import android.content.Intent
 import android.icu.util.Calendar
 import android.os.Build
 import android.os.Bundle
@@ -11,17 +13,21 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.wgy.recycleclient.R
 import com.wgy.recycleclient.logic.model.Appointment
+import com.wgy.recycleclient.logic.viewmodel.AppointmentHistoryViewModel
 import com.wgy.recycleclient.logic.viewmodel.HomeViewModel
+import com.wgy.recycleclient.logic.viewmodel.RecycleViewModel
+import com.wgy.recycleclient.ui.activity.AppointmentHistoryActivity
 import kotlinx.android.synthetic.main.fragment_recycle.*
 
 //预约界面
 @RequiresApi(Build.VERSION_CODES.N)
 class RecycleFragment: Fragment() {
-    private val viewModel by lazy { ViewModelProvider(this).get(HomeViewModel::class.java)}
+    private val viewModel by lazy { ViewModelProvider(this).get(RecycleViewModel::class.java)}
 
 
     override fun onCreateView(
@@ -36,19 +42,20 @@ class RecycleFragment: Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         initListener()
+
         //是否预约成功
         viewModel.appointIsSuccessful.observe(viewLifecycleOwner, { result ->
             val isSuccessful = result.getOrNull()
             if (isSuccessful != null) {
                 Toast.makeText(activity, "您已成功预约！", Toast.LENGTH_SHORT).show()
             }
+            Toast.makeText(activity, "$", Toast.LENGTH_SHORT).show()
         })
     }
 
     private fun initListener(){
         //选择日期
         date.setOnClickListener{
-
             val c = Calendar.getInstance()
             c.timeInMillis = System.currentTimeMillis()
             val year = c[Calendar.YEAR]
@@ -94,18 +101,28 @@ class RecycleFragment: Fragment() {
         //预约
         appointment.setOnClickListener{
             viewModel.location = address.text.toString()
+            viewModel.id = activity?.getSharedPreferences(
+                "RegisterAccount",
+                AppCompatActivity.MODE_PRIVATE
+            )?.getString("id", null).toString()
             viewModel.amount = Integer.parseInt(amount.text.toString())
-            viewModel.appointment = Appointment(0,viewModel.id,viewModel.location, viewModel.date + "-" + viewModel.time, viewModel.amount, 2, 0)
 
             AlertDialog.Builder(requireActivity()).apply {
                 setCancelable(false)
                 setMessage("请您确定预约信息：\n时间：${viewModel.date} ${viewModel.time}\n地址：${viewModel.location}\n数量：${viewModel.amount}")
                 setPositiveButton("确 定"){ _, _->
+                    viewModel.appointment = Appointment(1,viewModel.id,viewModel.location, viewModel.date + "-" + viewModel.time, viewModel.amount, 2, 0)
                     viewModel.appointOrder(viewModel.appointment)
                 }
                 setNegativeButton("取 消"){ _, _-> }
                 show()
             }
+        }
+
+        //历史订单
+        history.setOnClickListener{
+            val intent = Intent(activity, AppointmentHistoryActivity::class.java)
+            startActivity(intent)
         }
     }
 }

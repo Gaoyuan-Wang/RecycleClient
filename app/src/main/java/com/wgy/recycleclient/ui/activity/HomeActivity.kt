@@ -25,7 +25,6 @@ class HomeActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.home_layout)
         initData()
-
         }
 
     //初始化底部导航栏

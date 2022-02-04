@@ -47,7 +47,10 @@ class LoginActivity : BaseActivity() {
             //获取用户名与密码并发送至服务器
 //            viewModel.login = Login(username.text.toString(),password.text.toString())
 //            viewModel.getLoginData(viewModel.login)
-            //以下两行为测试代码，正式运行时删除
+            //以下五行为测试代码，正式运行时删除
+            val editor = getSharedPreferences("RegisterAccount", MODE_PRIVATE).edit()
+            editor.putString("id","000")
+            editor.apply()
             intent= Intent(this,HomeActivity::class.java)
             startActivity(intent)
         }

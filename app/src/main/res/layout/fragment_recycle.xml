@@ -6,6 +6,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <Button
+        android:id="@+id/history"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#0B8B19"
+        android:text="@string/recycle_fragment_history_appointment"
+        app:layout_marginLeftPercent="75%"/>
 
     <TextView
         android:id="@+id/date"

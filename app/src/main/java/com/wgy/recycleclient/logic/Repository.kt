@@ -10,7 +10,7 @@ object Repository {
     //获取登录数据返回给LoginViewModel
     fun getLoginData(username: String,password: String) = fire(Dispatchers.IO){
         val loginResponse = RecycleClientNetwork.getLoginData(username, password)
-        if (loginResponse.isAccessible){
+        if (1 == loginResponse.isAccessible){
             Result.success(loginResponse.id)
         }else{
             Result.failure(RuntimeException("Response accessibility is ${loginResponse.isAccessible}"))
