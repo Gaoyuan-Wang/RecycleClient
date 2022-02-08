@@ -11,6 +11,7 @@ import com.wgy.recycleclient.logic.model.Order
 class AppointmentHistoryViewModel: ViewModel() {
     //获取当前登录的用户ID
     var id: String = ""
+    var appointmentPosition: Int = 0
 
     var ordersLiveData = MutableLiveData<CheckOrder>()
     var checkOrder = CheckOrder(id)

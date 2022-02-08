@@ -1,18 +1,17 @@
 package com.wgy.recycleclient.ui.adapter
 
-import android.app.Activity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.wgy.recycleclient.R
+import com.wgy.recycleclient.logic.model.FinishOrder
 import com.wgy.recycleclient.logic.model.Order
-import com.wgy.recycleclient.logic.viewmodel.AppointmentHistoryViewModel
+import com.wgy.recycleclient.ui.activity.AppointmentHistoryActivity
 
-class AppointmentAdapter (private val activity: Activity, private val appointmentList: List<Order>):
+class AppointmentAdapter(private val activity: AppointmentHistoryActivity, private val appointmentList: ArrayList<Order>):
     RecyclerView.Adapter<AppointmentAdapter.ViewHolder>() {
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -39,8 +38,19 @@ class AppointmentAdapter (private val activity: Activity, private val appointmen
         holder.appointmentTime.text = appointment.time
         holder.appointmentPoint.text = appointment.point.toString()
         holder.cancel.setOnClickListener {
-            }
+            activity.viewModel.finishOrder = FinishOrder(appointment.id, activity.viewModel.id)
+            activity.viewModel.finishOrder(activity.viewModel.finishOrder)
+            activity.viewModel.appointmentPosition = position
+        }
     }
 
     override fun getItemCount(): Int = appointmentList.size
+
+    //  删除数据
+    fun removeData(position: Int) {
+        appointmentList.removeAt(position)
+        //删除动画
+        notifyItemRemoved(position)
+        notifyDataSetChanged()
+    }
 }

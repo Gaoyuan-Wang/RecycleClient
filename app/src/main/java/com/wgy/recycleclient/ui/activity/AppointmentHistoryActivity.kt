@@ -12,7 +12,7 @@ import com.wgy.recycleclient.ui.adapter.AppointmentAdapter
 import kotlinx.android.synthetic.main.fragment_activity.*
 
 class AppointmentHistoryActivity : BaseActivity() {
-    private val viewModel by lazy { ViewModelProvider(this).get(AppointmentHistoryViewModel::class.java)}
+    val viewModel by lazy { ViewModelProvider(this).get(AppointmentHistoryViewModel::class.java)}
     private lateinit var adapter: AppointmentAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,7 +38,15 @@ class AppointmentHistoryActivity : BaseActivity() {
                 result.exceptionOrNull()?.printStackTrace()
             }
         })
-        //adapter.setOnItemClickListener{}
+
+        viewModel.finishOrderIsSuccessful.observe(this,{result ->
+            val finishResult = result.getOrNull()
+            if(1 == finishResult){
+                Toast.makeText(this, "成功取消订单", Toast.LENGTH_SHORT).show()
+                adapter.removeData(viewModel.appointmentPosition)
+            }else{
+                Toast.makeText(this, "取消订单失败", Toast.LENGTH_SHORT).show()}
+        })
     }
 
 }
