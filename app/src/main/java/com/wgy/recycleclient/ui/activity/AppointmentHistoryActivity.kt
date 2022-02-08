@@ -38,6 +38,7 @@ class AppointmentHistoryActivity : BaseActivity() {
                 result.exceptionOrNull()?.printStackTrace()
             }
         })
+        //adapter.setOnItemClickListener{}
     }
 
 }

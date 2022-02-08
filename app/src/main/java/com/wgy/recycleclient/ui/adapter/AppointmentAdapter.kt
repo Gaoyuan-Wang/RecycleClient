@@ -6,9 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.wgy.recycleclient.R
 import com.wgy.recycleclient.logic.model.Order
+import com.wgy.recycleclient.logic.viewmodel.AppointmentHistoryViewModel
 
 class AppointmentAdapter (private val activity: Activity, private val appointmentList: List<Order>):
     RecyclerView.Adapter<AppointmentAdapter.ViewHolder>() {
@@ -25,6 +27,7 @@ class AppointmentAdapter (private val activity: Activity, private val appointmen
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view =
             LayoutInflater.from(parent.context).inflate(R.layout.activity_item, parent, false)
+
         return ViewHolder(view)
     }
 
@@ -35,6 +38,8 @@ class AppointmentAdapter (private val activity: Activity, private val appointmen
         holder.appointmentAmount.text = appointment.amount.toString()
         holder.appointmentTime.text = appointment.time
         holder.appointmentPoint.text = appointment.point.toString()
+        holder.cancel.setOnClickListener {
+            }
     }
 
     override fun getItemCount(): Int = appointmentList.size

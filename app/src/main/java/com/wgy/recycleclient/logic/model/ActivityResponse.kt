@@ -4,7 +4,8 @@ import com.google.gson.annotations.SerializedName
 
 data class ActivityResponse(
         @SerializedName("code") val isSuccessful: Int,
-        val content: String
+        val content: String,
+        val args: String
         )
 
 data class Activity(

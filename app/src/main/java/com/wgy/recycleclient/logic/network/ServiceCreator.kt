@@ -5,7 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object ServiceCreator {
     //服务器根URL
-    private const val BASE_URL = "http://150.158.38.231:8084/"
+    private const val BASE_URL = "http://150.158.38.231:8084"
     //构建动态代理对象
     private val retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)

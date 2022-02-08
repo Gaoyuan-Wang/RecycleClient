@@ -24,9 +24,11 @@ class ActivityViewModel: ViewModel() {
 
     val signIsSuccessful = Transformations.switchMap(activityLiveData){
         Repository.sign(activity.aid,activity.rid)
+//        Repository.sign(1,"1")
     }
     fun sign(activity: Activity){
-        activityLiveData.value = activity
+//    fun sign(){
+        activityLiveData.value = activityLiveData.value
     }
 
     val activities = Transformations.switchMap(checkAllActivityLiveData){ checkAllActivity ->

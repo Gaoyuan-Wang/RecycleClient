@@ -1,5 +1,6 @@
 package com.wgy.recycleclient.logic.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
@@ -11,7 +12,9 @@ class LoginViewModel: ViewModel() {
     lateinit var login : Login
 
     val loginResult = Transformations.switchMap(loginLiveData){
-        login -> Repository.getLoginData(login.username,login.password)
+        login ->
+//        Log.d("LoginViewModel", login.username)
+        Repository.getLoginData(login.username,login.password)
     }
 
     fun getLoginData(login: Login){

@@ -12,7 +12,7 @@ interface LoginService {
      * @param username 用户名
      * @param password 密码
      * */
-    @GET("/loginData")
+    @GET("/loginController")
     fun getLoginData(
         @Query("username") username: String,
         @Query("password") password: String

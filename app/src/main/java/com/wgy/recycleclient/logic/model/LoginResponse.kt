@@ -4,8 +4,10 @@ import com.google.gson.annotations.SerializedName
 
 //服务器响应数据格式
 data class LoginResponse(
-    @SerializedName("code") val isAccessible: Int,
-    val id: String)
+        val success: String,
+        val code: Int,
+        val data: List<Int>,
+        val message: String)
 
 //请求服务器数据格式
 data class Login(

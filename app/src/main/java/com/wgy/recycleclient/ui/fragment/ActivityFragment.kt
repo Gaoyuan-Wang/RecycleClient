@@ -51,5 +51,14 @@ class ActivityFragment:Fragment() {
                 result.exceptionOrNull()?.printStackTrace()
             }
         })
+//        sign.setOnClickListener {
+//            viewModel.sign()
+//            }
+//        viewModel.signIsSuccessful.observe(this, Observer{result->
+//            val success = result.getOrNull()
+//            if(null!=success){
+//                Toast.makeText(activity,success,Toast.LENGTH_SHORT).show()
+//            }
+//        })
     }
 }
