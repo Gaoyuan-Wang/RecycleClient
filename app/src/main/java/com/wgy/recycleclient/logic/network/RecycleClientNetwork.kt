@@ -4,28 +4,35 @@ import android.util.Log
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.http.Query
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
 
 object RecycleClientNetwork {
-    private val loginService = ServiceCreator.create<LoginService>()
+    private val residentService = ServiceCreator.create<ResidentService>()
     suspend fun getLoginData(
             username: String,
             password: String
-    ) = loginService.getLoginData(username, password).await()
+    ) = residentService.getLoginData(username, password).await()
+    suspend fun checkPRById(
+            id: String
+    ) = residentService.checkPRById(id).await()
+    suspend fun checkResidentById(
+            id: String
+    ) = residentService.checkResidentById(id).await()
+    suspend fun sortResidentByLike(
+            id: String
+    ) = residentService.sortResidentByLike(id).await()
 
     private val appointmentService = ServiceCreator.create<AppointmentService>()
     suspend fun appointOrder(
-            id: Int,
+            checkId: String,
             rid: String,
             location: String,
             time: String,
             amount: Int,
             point: Int,
-            state: Int
-    ) = appointmentService.appointOrder(id, rid, location, time, amount, point, state).await()
+    ) = appointmentService.appointOrder(checkId, rid, location, time, amount, point).await()
     suspend fun checkOrder(
             id: String
     ) = appointmentService.checkOrder(id).await()
@@ -46,6 +53,16 @@ object RecycleClientNetwork {
             aid: Int,
             rid: String
     ) = activityService.checkActivityById(aid, rid).await()
+    suspend fun checkActivityByCategory(
+            category: String,
+            rid: String
+    ) = activityService.checkActivityByCategory(category, rid).await()
+    suspend fun checkActivityByResident(
+            rid: String
+    ) = activityService.checkActivityByResident(rid).await()
+    suspend fun checkRecommendActivity(
+            rid: String
+    ) = activityService.checkRecommendActivity(rid).await()
     suspend fun cancelSign(
             aid: Int,
             id: String
@@ -62,7 +79,7 @@ object RecycleClientNetwork {
             key: String
     ) = giftService.checkGiftByKey(key).await()
     suspend fun exchangeGift(
-            id: Int,
+            id: String,
             rid: String,
             gid: Int,
             contact:String,

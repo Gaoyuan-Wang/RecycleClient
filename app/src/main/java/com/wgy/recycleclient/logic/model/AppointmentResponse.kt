@@ -3,11 +3,27 @@ package com.wgy.recycleclient.logic.model
 import com.google.gson.annotations.SerializedName
 
 data class AppointmentResponse (
-        @SerializedName("code") val isSuccessful: Int,
-        val content: String
+        val success: String,
+        val code: Int,
+        val data: List<Int>,
+        val message: String
+        )
+data class Appointment(
+        val checkId: String,
+        val rid: String,
+        val location: String,
+        val amount: Int,
+        val time: String,
+        val point: Int,
         )
 
-data class Appointment(
+data class CheckOrderResponse(
+        val success: String,
+        val code: Int,
+        val data: List<Order>,
+        val message: String
+)
+data class Order(
         val id: Int,
         val rid: String,
         val location: String,
@@ -16,31 +32,14 @@ data class Appointment(
         val point: Int,
         val state: Int
         )
-
-data class CheckOrderResponse(
-        val status: Int,
-        val orders: List<Order>
-)
-
-data class Order(
-        val amount: Int,
-        val id: Int,
-        val location: String,
-        val point: Int,
-        val rid: String,
-        val state: Int,
-        val time: String
-        )
-
-data class CheckOrder(
-        val id: String
-        )
+data class CheckOrder(val id: String)
 
 data class FinishOrderResponse(
-        @SerializedName("code") val isSuccessful: Int,
-        val content: String
+        val success: String,
+        val code: Int,
+        val data: List<Int>,
+        val message: String
         )
-
 data class FinishOrder(
         val oid: Int,
         val rid: String

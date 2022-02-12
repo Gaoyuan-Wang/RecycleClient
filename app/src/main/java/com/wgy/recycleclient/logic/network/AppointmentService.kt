@@ -10,23 +10,21 @@ import retrofit2.http.Query
 
 interface AppointmentService {
     /**
-     * @param id       订单ID
+     * @param checkId  用户ID
      * @param rid      用户ID
      * @param location 回收地址
      * @param time     预定时间
      * @param amount   回收数量
      * @param point    积分数
-     * @param state    订单状态
      */
     @GET("/appointOrder")
     fun appointOrder(
-            @Query("id")id: Int,
+            @Query("checkId")checkId: String,
             @Query("rid")rid: String,
             @Query("location")location: String,
             @Query("time")time: String,
             @Query("amount")amount: Int,
             @Query("point")point: Int,
-            @Query("state")state: Int
     ): Call<AppointmentResponse>
 
     /**

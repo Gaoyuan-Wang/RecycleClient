@@ -14,118 +14,170 @@ object Repository {
         //Log.d("Repository", loginResponse.isAccessible.toString())
         if ("true" == loginResponse.success){
             Result.success(loginResponse.data)
-            //Result.success(loginResponse.id)
         }else{
             Result.failure(RuntimeException("Response accessibility is ${loginResponse.success}"))
         }
     }
 
-    //提交预定数据返回给HomeViewModel
-    fun appointOrder(id: Int, rid: String, location: String, time: String, amount: Int, point: Int, state: Int) = fire(Dispatchers.IO){
-        val appointmentResponse = RecycleClientNetwork.appointOrder(id, rid, location, time, amount, point, state)
-        if (200 == appointmentResponse.isSuccessful){
-            Result.success(appointmentResponse.isSuccessful)
+    fun checkPRById(id: String) = fire(Dispatchers.IO){
+        val checkPRByIdResponse = RecycleClientNetwork.checkPRById(id)
+        if ("true" == checkPRByIdResponse.success){
+            Result.success(checkPRByIdResponse.data)
         }else{
-            Result.failure(RuntimeException("Response code is ${appointmentResponse.isSuccessful}"))
+            Result.failure(RuntimeException("Response accessibility is ${checkPRByIdResponse.success}"))
+        }
+    }
+
+    fun checkResidentById(id: String) = fire(Dispatchers.IO){
+        val checkResidentByIdResponse = RecycleClientNetwork.checkResidentById(id)
+        if ("true" == checkResidentByIdResponse.success){
+            Result.success(checkResidentByIdResponse.data)
+        }else{
+            Result.failure(RuntimeException("Response accessibility is ${checkResidentByIdResponse.success}"))
+        }
+    }
+
+    fun sortResidentByLike(id: String) = fire(Dispatchers.IO){
+        val sortResidentByLikeResponse = RecycleClientNetwork.sortResidentByLike(id)
+        if ("true" == sortResidentByLikeResponse.success){
+            Result.success(sortResidentByLikeResponse.data)
+        }else{
+            Result.failure(RuntimeException("Response accessibility is ${sortResidentByLikeResponse.success}"))
+        }
+    }
+
+    //提交预定数据返回给HomeViewModel
+    fun appointOrder(checkId: String, rid: String, location: String, time: String, amount: Int, point: Int) = fire(Dispatchers.IO){
+        val appointmentResponse = RecycleClientNetwork.appointOrder(checkId, rid, location, time, amount, point)
+        if ("true" == appointmentResponse.success){
+            Result.success(appointmentResponse.success)
+        }else{
+            Result.failure(RuntimeException("Response code is ${appointmentResponse.success}"))
         }
     }
 
     fun checkOrder(id: String) = fire(Dispatchers.IO){
         val checkOrderResponse = RecycleClientNetwork.checkOrder(id)
-        if (1 == checkOrderResponse.status){
-            Result.success(checkOrderResponse.orders)
+        if ("true" == checkOrderResponse.success){
+            Result.success(checkOrderResponse.data)
         }else{
-            Result.failure(RuntimeException("Response code is ${checkOrderResponse.status}"))
+            Result.failure(RuntimeException("Response code is ${checkOrderResponse.success}"))
         }
     }
 
     fun finishOrder(oid: Int, id: String) = fire(Dispatchers.IO){
         val finishOrderResponse = RecycleClientNetwork.finishOrder(oid, id)
-        if (200 == finishOrderResponse.isSuccessful){
-            Result.success(finishOrderResponse.isSuccessful)
+        if ("true" == finishOrderResponse.success){
+            Result.success(finishOrderResponse.data)
         }else{
-            Result.failure(RuntimeException("Response code is ${finishOrderResponse.isSuccessful}"))
+            Result.failure(RuntimeException("Response code is ${finishOrderResponse.success}"))
         }
     }
 
     fun sign(aid: Int, rid: String) = fire(Dispatchers.IO){
         val activityResponse = RecycleClientNetwork.sign(aid, rid)
-        Log.d("Repository", activityResponse.content)
-        if (1 == activityResponse.isSuccessful){
-            Result.success(activityResponse.content)
+        if ("true" == activityResponse.success){
+            Result.success(activityResponse.success)
         }else {
-            Result.failure(RuntimeException("Response code is ${activityResponse.isSuccessful}"))
+            Result.failure(RuntimeException("Response code is ${activityResponse.success}"))
         }
     }
 
     fun checkAllActivity(rid: String) = fire(Dispatchers.IO){
         val checkAllActivityResponse = RecycleClientNetwork.checkAllActivity(rid)
-        if (1 == checkAllActivityResponse.status){
-            Result.success(checkAllActivityResponse.activities)
+        if ("true" == checkAllActivityResponse.success){
+            Result.success(checkAllActivityResponse.data)
         }else {
-            Result.failure(RuntimeException("Response code is ${checkAllActivityResponse.status}"))
+            Result.failure(RuntimeException("Response code is ${checkAllActivityResponse.success}"))
         }
     }
 
     fun checkActivityById(aid: Int,rid: String) = fire(Dispatchers.IO){
         val checkActivityByIdResponse = RecycleClientNetwork.checkActivityById(aid, rid)
-        if (1 == checkActivityByIdResponse.status){
-            Result.success(checkActivityByIdResponse.status)
+        if ("true" == checkActivityByIdResponse.success){
+            Result.success(checkActivityByIdResponse.data)
         }else {
-            Result.failure(RuntimeException("Response code is ${checkActivityByIdResponse.status}"))
+            Result.failure(RuntimeException("Response code is ${checkActivityByIdResponse.success}"))
+        }
+    }
+
+    fun checkActivityByCategory(category: String, rid: String) = fire(Dispatchers.IO){
+        val checkActivityByCategoryResponse = RecycleClientNetwork.checkActivityByCategory(category, rid)
+        if ("true" == checkActivityByCategoryResponse.success){
+            Result.success(checkActivityByCategoryResponse.success)
+        }else{
+            Result.failure(RuntimeException("Response code is ${checkActivityByCategoryResponse.success}"))
+        }
+    }
+
+    fun checkActivityByResident(rid: String) = fire(Dispatchers.IO){
+        val checkActivityByResidentResponse = RecycleClientNetwork.checkActivityByResident(rid)
+        if ("true" == checkActivityByResidentResponse.success){
+            Result.success(checkActivityByResidentResponse.data)
+        }else{
+            Result.failure(RuntimeException("Response code is ${checkActivityByResidentResponse.success}"))
+        }
+    }
+
+    fun checkRecommendActivity(rid: String) = fire(Dispatchers.IO){
+        val checkRecommendActivityResponse = RecycleClientNetwork.checkRecommendActivity(rid)
+        if ("true" == checkRecommendActivityResponse.success){
+            Result.success(checkRecommendActivityResponse.data)
+        }else{
+            Result.failure(RuntimeException("Response code is ${checkRecommendActivityResponse.success}"))
         }
     }
 
     fun cancelSign(aid: Int, id: String) = fire(Dispatchers.IO){
         val cancelSignResponse = RecycleClientNetwork.cancelSign(aid, id)
-        if (200 == cancelSignResponse.isSuccessful){
-            Result.success(cancelSignResponse.isSuccessful)
+        if ("true" == cancelSignResponse.success){
+            Result.success(cancelSignResponse.success)
         }else {
-            Result.failure(RuntimeException("Response code is ${cancelSignResponse.isSuccessful}"))
+            Result.failure(RuntimeException("Response code is ${cancelSignResponse.success}"))
         }
     }
 
     fun checkAllGift(rid: String) = fire(Dispatchers.IO){
         val checkAllGiftResponse = RecycleClientNetwork.checkAllGift(rid)
-        if ("true" == checkAllGiftResponse.status){
-            Result.success(checkAllGiftResponse.AllGift)
+        if ("true" == checkAllGiftResponse.success){
+            Result.success(checkAllGiftResponse.data)
         }else {
-            Result.failure(RuntimeException("Response code is ${checkAllGiftResponse.status}"))
+            Result.failure(RuntimeException("Response code is ${checkAllGiftResponse.success}"))
         }
     }
 
     fun checkGiftById(gid: Int) = fire(Dispatchers.IO){
         val checkGiftByIdResponse = RecycleClientNetwork.checkGiftById(gid)
-        if ("true" == checkGiftByIdResponse.status){
-            Result.success(checkGiftByIdResponse.gift)
+        if ("true" == checkGiftByIdResponse.success){
+            Result.success(checkGiftByIdResponse.data)
         }else {
-            Result.failure(RuntimeException("Response code is ${checkGiftByIdResponse.status}"))
+            Result.failure(RuntimeException("Response code is ${checkGiftByIdResponse.success}"))
         }
     }
 
     fun checkGiftByKey(key: String) = fire(Dispatchers.IO){
         val checkGiftByKeyResponse = RecycleClientNetwork.checkAllGift(key)
-        if ("true" == checkGiftByKeyResponse.status){
-            Result.success(checkGiftByKeyResponse.AllGift)
+        if ("true" == checkGiftByKeyResponse.success){
+            Result.success(checkGiftByKeyResponse.data)
         }else {
-            Result.failure(RuntimeException("Response code is ${checkGiftByKeyResponse.status}"))
+            Result.failure(RuntimeException("Response code is ${checkGiftByKeyResponse.success}"))
         }
     }
 
-    fun exchangeGift(id: Int, rid: String, gid: Int, contact:String, phone:String, location:String) = fire(Dispatchers.IO){
+    fun exchangeGift(id: String, rid: String, gid: Int, contact:String, phone:String, location:String) = fire(Dispatchers.IO){
         val exchangeGiftResponse = RecycleClientNetwork.exchangeGift(id, rid, gid, contact, phone, location)
-        if(1 == exchangeGiftResponse.isSuccessful){
-            Result.success(exchangeGiftResponse.content)
+        if("true" == exchangeGiftResponse.success){
+            Result.success(exchangeGiftResponse.success)
         }else {
-            Result.failure(RuntimeException("Response code is ${exchangeGiftResponse.isSuccessful}"))}
+            Result.failure(RuntimeException("Response code is ${exchangeGiftResponse.success}"))}
     }
 
     fun cancelGift(id: String, gid: Int) = fire(Dispatchers.IO){
         val cancelGiftResponse = RecycleClientNetwork.cancelGift(id, gid)
-        if(1 == cancelGiftResponse.isSuccessful){
-            Result.success(cancelGiftResponse.content)
+        if("true" == cancelGiftResponse.success){
+            Result.success(cancelGiftResponse.success)
         }else {
-            Result.failure(RuntimeException("Response code is ${cancelGiftResponse.isSuccessful}"))}
+            Result.failure(RuntimeException("Response code is ${cancelGiftResponse.success}"))}
     }
 
     private fun <T> fire(context: CoroutineContext, block:suspend()->Result<T>)=

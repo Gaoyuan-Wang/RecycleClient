@@ -31,8 +31,8 @@ interface GiftService {
     ): Call<CheckGiftByKeyResponse>
 
     /**
-     * @param id 兑换单号
-     * @param rid 用户编号
+     * @param id 用户ID
+     * @param rid 用户ID
      * @param gid 礼物编号
      * @param contact 联系人姓名
      * @param phone 电话号码
@@ -40,7 +40,7 @@ interface GiftService {
      */
     @GET("/exchangeGift")
     fun exchangeGift(
-            @Query("id") id: Int,
+            @Query("id") id: String,
             @Query("rid") rid: String,
             @Query("gid") gid: Int,
             @Query("contact") contact:String,
