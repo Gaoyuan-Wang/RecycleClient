@@ -4,8 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
-import android.app.Application
-import com.wgy.recycleclient.RecycleClientApplication
+import com.wgy.recycleclient.RecycleClientApplication.Companion.context
 import com.wgy.recycleclient.logic.Repository
 import com.wgy.recycleclient.logic.model.*
 
@@ -22,13 +21,12 @@ class RecycleViewModel: ViewModel() {
 
     val appointIsSuccessful = Transformations.switchMap(appointmentLiveData){ appointment->
         Repository.appointOrder(
-            appointment.id,
+            appointment.checkId,
             appointment.rid,
             appointment.location,
             appointment.time,
             appointment.amount,
             appointment.point,
-            appointment.state
         )
     }
     fun appointOrder(appointment: Appointment){

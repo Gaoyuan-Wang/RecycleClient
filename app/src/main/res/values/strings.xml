@@ -16,4 +16,11 @@
     <string name="appointment_history_layout_back">返回</string>
     <string name="appointment_item_cancel">取消</string>
     <string name="recycle_fragment_history_appointment">历史订单</string>
+    <string name="fragment_activity_my_activity">查看我参加的活动</string>
+    <string name="fragment_activity_category">活动分类</string>
+    <string name="fragment_activity_recommend">推荐活动</string>
+    <string name="activity_category_category">分类活动</string>
+    <string name="category_item_sign">报名</string>
+    <string name="activity_history_item_cancel_sign">取消报名</string>
+    <string name="activity_history_layout_history">历史报名活动</string>
 </resources>

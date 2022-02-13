@@ -1,8 +1,10 @@
 package com.wgy.recycleclient.logic.viewmodel
 
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
+import com.wgy.recycleclient.RecycleClientApplication.Companion.context
 import com.wgy.recycleclient.logic.Repository
 import com.wgy.recycleclient.logic.model.CheckOrder
 import com.wgy.recycleclient.logic.model.FinishOrder
@@ -14,7 +16,7 @@ class AppointmentHistoryViewModel: ViewModel() {
     var appointmentPosition: Int = 0
 
     var ordersLiveData = MutableLiveData<CheckOrder>()
-    var checkOrder = CheckOrder(id)
+    lateinit var checkOrder: CheckOrder
     var allOrders = ArrayList<Order>()
 
     var finishOrderLiveData = MutableLiveData<FinishOrder>()

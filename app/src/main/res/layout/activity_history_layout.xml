@@ -4,7 +4,6 @@
     android:layout_height="match_parent"
     android:background="?android:windowBackground">
 
-
     <RelativeLayout
         android:id="@+id/actionBarLayout"
         android:layout_width="match_parent"
@@ -15,7 +14,7 @@
             android:layout_width="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:text="@string/appointment_history_layout_history_order"
+            android:text="@string/activity_history_layout_history"
             android:textSize="20sp"/>
         <Button
             android:id="@+id/back"

@@ -3,13 +3,13 @@ package com.wgy.recycleclient.logic.model
 import androidx.annotation.StringRes
 import com.google.gson.annotations.SerializedName
 
-data class ActivityResponse(
+data class SignResponse(
         val success: String,
         val code: Int,
         val data: List<Int>,
         val message: String
         )
-data class Activity(val aid: Int, val rid: String)
+data class Sign(val aid: Int, val rid: String)
 
 data class CheckAllActivityResponse(
         val success: String,

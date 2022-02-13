@@ -1,4 +1,4 @@
-package com.wgy.recycleclient.logic.network
+package com.wgy.recycleclient.logic.network.service
 
 import com.wgy.recycleclient.logic.model.CheckPRByIdResponse
 import com.wgy.recycleclient.logic.model.CheckResidentByIdResponse

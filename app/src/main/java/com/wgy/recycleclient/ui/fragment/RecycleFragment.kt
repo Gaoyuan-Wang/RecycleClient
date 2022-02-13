@@ -7,6 +7,7 @@ import android.content.Intent
 import android.icu.util.Calendar
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -40,6 +41,10 @@ class RecycleFragment: Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        viewModel.id = activity?.getSharedPreferences(
+                "RegisterAccount",
+                AppCompatActivity.MODE_PRIVATE
+        )?.getString("id", null).toString()
 
         initListener()
 
@@ -48,8 +53,8 @@ class RecycleFragment: Fragment() {
             val isSuccessful = result.getOrNull()
             if (isSuccessful != null) {
                 Toast.makeText(activity, "您已成功预约！", Toast.LENGTH_SHORT).show()
-            }
-            Toast.makeText(activity, "$", Toast.LENGTH_SHORT).show()
+            }else{
+                Toast.makeText(activity, "您未成功预约", Toast.LENGTH_SHORT).show()}
         })
     }
 
@@ -101,17 +106,13 @@ class RecycleFragment: Fragment() {
         //预约
         appointment.setOnClickListener{
             viewModel.location = address.text.toString()
-            viewModel.id = activity?.getSharedPreferences(
-                "RegisterAccount",
-                AppCompatActivity.MODE_PRIVATE
-            )?.getString("id", null).toString()
             viewModel.amount = Integer.parseInt(amount.text.toString())
-
             AlertDialog.Builder(requireActivity()).apply {
                 setCancelable(false)
                 setMessage("请您确定预约信息：\n时间：${viewModel.date} ${viewModel.time}\n地址：${viewModel.location}\n数量：${viewModel.amount}")
+                Log.d("RecycleFragment",viewModel.id)
                 setPositiveButton("确 定"){ _, _->
-                    viewModel.appointment = Appointment(1,viewModel.id,viewModel.location, viewModel.date + "-" + viewModel.time, viewModel.amount, 2, 0)
+                    viewModel.appointment = Appointment(viewModel.id,viewModel.id,viewModel.location,viewModel.amount, viewModel.date + "-" + viewModel.time, 2 * viewModel.amount)
                     viewModel.appointOrder(viewModel.appointment)
                 }
                 setNegativeButton("取 消"){ _, _-> }

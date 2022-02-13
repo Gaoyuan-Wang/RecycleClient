@@ -1,6 +1,10 @@
 package com.wgy.recycleclient.logic.network
 
 import android.util.Log
+import com.wgy.recycleclient.logic.network.service.ActivityService
+import com.wgy.recycleclient.logic.network.service.AppointmentService
+import com.wgy.recycleclient.logic.network.service.GiftService
+import com.wgy.recycleclient.logic.network.service.ResidentService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

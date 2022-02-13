@@ -11,7 +11,7 @@
         android:layout_height="60dp"
         android:background="@color/white">
         <EditText
-            android:id="@+id/searchActivityEdit"
+            android:id="@+id/searchActivity"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_gravity="center_vertical"
@@ -19,22 +19,57 @@
             android:layout_marginEnd="10dp"
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
-            android:hint="@string/fragment_activity_activity_id"/>
-<!--        <Button-->
-<!--            android:id="@+id/sign"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="40dp"-->
-<!--            android:layout_gravity="center_vertical"-->
-<!--            android:layout_marginStart="10dp"-->
-<!--            android:layout_marginEnd="10dp"-->
-<!--            android:paddingStart="10dp"-->
-<!--            android:paddingEnd="10dp"/>-->
+            android:hint="@string/fragment_activity_activity_id"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:imeOptions="actionSearch"/>
     </FrameLayout>
-
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+        android:id="@+id/idRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/actionBarLayout"/>
-<!--        android:visibility="gone"/>-->
+        android:layout_below="@id/actionBarLayout"
+        android:visibility="gone"/>
+    <TextView
+        android:id="@+id/residentActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:text="@string/fragment_activity_my_activity"
+        android:textSize="30sp"
+        android:textColor="#0B8B19"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:layout_below="@id/idRecyclerView"
+        />
+    <TextView
+        android:id="@+id/category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/fragment_activity_category"
+        android:textSize="20sp"
+        android:textColor="#0B8B19"
+        android:gravity="center"
+        android:layout_below="@id/residentActivity"
+        />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/categoryRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/category"/>
+    <TextView
+        android:id="@+id/recommend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/fragment_activity_recommend"
+        android:textSize="20sp"
+        android:textColor="#0B8B19"
+        android:gravity="center"
+        android:layout_below="@id/categoryRecyclerView"
+        />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recommendRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/recommend"/>
+
 </RelativeLayout>

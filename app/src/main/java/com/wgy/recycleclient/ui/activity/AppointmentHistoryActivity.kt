@@ -7,9 +7,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.wgy.recycleclient.BaseActivity
 import com.wgy.recycleclient.R
+import com.wgy.recycleclient.logic.model.CheckOrder
 import com.wgy.recycleclient.logic.viewmodel.AppointmentHistoryViewModel
 import com.wgy.recycleclient.ui.adapter.AppointmentAdapter
-import kotlinx.android.synthetic.main.fragment_activity.*
+import kotlinx.android.synthetic.main.appointment_history_layout.*
 
 class AppointmentHistoryActivity : BaseActivity() {
     val viewModel by lazy { ViewModelProvider(this).get(AppointmentHistoryViewModel::class.java)}
@@ -23,6 +24,7 @@ class AppointmentHistoryActivity : BaseActivity() {
             MODE_PRIVATE
         )?.getString("id", null).toString()
         recyclerView.layoutManager = LinearLayoutManager(this)
+        viewModel.checkOrder = CheckOrder(viewModel.id)
         viewModel.checkOrder(viewModel.checkOrder)
         adapter = AppointmentAdapter(this,viewModel.allOrders)
         recyclerView.adapter = adapter
@@ -41,12 +43,17 @@ class AppointmentHistoryActivity : BaseActivity() {
 
         viewModel.finishOrderIsSuccessful.observe(this,{result ->
             val finishResult = result.getOrNull()
-            if(1 == finishResult){
+            if(null != finishResult){
                 Toast.makeText(this, "成功取消订单", Toast.LENGTH_SHORT).show()
                 adapter.removeData(viewModel.appointmentPosition)
             }else{
-                Toast.makeText(this, "取消订单失败", Toast.LENGTH_SHORT).show()}
+                Toast.makeText(this, "取消订单失败", Toast.LENGTH_SHORT).show()
+            }
         })
+
+        back.setOnClickListener{
+            finish()
+        }
     }
 
 }

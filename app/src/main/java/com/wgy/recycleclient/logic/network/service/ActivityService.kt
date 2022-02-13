@@ -1,4 +1,4 @@
-package com.wgy.recycleclient.logic.network
+package com.wgy.recycleclient.logic.network.service
 
 import com.wgy.recycleclient.logic.model.*
 import retrofit2.Call
@@ -14,7 +14,7 @@ interface ActivityService {
     fun sign(
             @Query("aid")aid: Int,
             @Query("rid")id: String
-    ): Call<ActivityResponse>
+    ): Call<SignResponse>
 
     /**
      * @param id 用户ID

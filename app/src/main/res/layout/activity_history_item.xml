@@ -15,7 +15,7 @@
         android:layout_gravity="center_vertical">
 
         <TextView
-            android:id="@+id/appointmentState"
+            android:id="@+id/activityName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
@@ -23,41 +23,42 @@
             android:textColor="?android:attr/textColorPrimary"
             android:textSize="20sp"/>
         <Button
-            android:id="@+id/cancel"
+            android:id="@+id/cancelSign"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:text="@string/appointment_item_cancel"
+            android:text="@string/activity_history_item_cancel_sign"
             android:textColor="@color/white"
             android:backgroundTint="#0B8B19"
             android:textSize="20sp"/>
         <TextView
-            android:id="@+id/appointmentLocation"
+            android:id="@+id/activityPoint"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/appointmentState"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:textColor="?android:attr/textColorPrimary"
+            android:textSize="20sp"/>
+        <TextView
+            android:id="@+id/activityLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/activityName"
             android:textColor="?android:attr/textColorPrimary"
             android:textSize="15sp"/>
         <TextView
-            android:id="@+id/appointmentAmount"
+            android:id="@+id/activityBeginTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/appointmentLocation"
+            android:layout_below="@id/activityLocation"
             android:textColor="?android:attr/textColorPrimary"
             android:textSize="12sp"/>
         <TextView
-            android:id="@+id/appointmentTime"
+            android:id="@+id/activityEndTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/appointmentLocation"
-            android:textColor="?android:attr/textColorPrimary"
-            android:textSize="12sp"/>
-        <TextView
-            android:id="@+id/appointmentPoint"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/appointmentTime"
+            android:layout_toEndOf="@id/activityBeginTime"
             android:textColor="?android:attr/textColorPrimary"
             android:textSize="12sp"/>
     </RelativeLayout>

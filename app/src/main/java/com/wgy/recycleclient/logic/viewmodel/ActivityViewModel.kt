@@ -8,28 +8,43 @@ import com.wgy.recycleclient.logic.model.*
 
 class ActivityViewModel: ViewModel() {
     var id = ""
+    var activityCategoryList = arrayListOf("知识竞赛","游戏竞赛","社区活动")
 
-    var activityLiveData = MutableLiveData<Activity>()
-    lateinit var activity: Activity
+    var signLiveData = MutableLiveData<Sign>()
+    lateinit var sign: Sign
+    val signResponseLiveData = Transformations.switchMap(signLiveData){
+        Repository.sign(sign.aid,sign.rid)
+    }
+    fun sign(sign: Sign){
+        signLiveData.value = sign
+    }
+
+    val checkRecommendActivityLiveData = MutableLiveData<CheckRecommendActivity>()
+    lateinit var checkRecommendActivity: CheckRecommendActivity
+    var allRecommendActivities = ArrayList<CheckRecommendActivityData>()
+    val checkRecommendActivityResponseLiveData = Transformations.switchMap(checkRecommendActivityLiveData){
+        Repository.checkRecommendActivity(checkRecommendActivity.rid)
+    }
+    fun checkRecommendActivity(checkRecommendActivity: CheckRecommendActivity){
+        checkRecommendActivityLiveData.value = checkRecommendActivity
+    }
 
     var checkAllActivityLiveData = MutableLiveData<CheckAllActivity>()
-    var checkAllActivity = CheckAllActivity(id)
-    var allActivity = ArrayList<AllActivity>()
+    lateinit var checkAllActivity: CheckAllActivity
+    var allActivity = ArrayList<CheckAllActivityData>()
+
+
 
     var checkActivityByIdLiveData = MutableLiveData<CheckActivityById>()
     lateinit var checkActivityById: CheckActivityById
-
-    var cancelSignLiveData = MutableLiveData<CancelSign>()
-    lateinit var cancelSign: CancelSign
-
-    val signIsSuccessful = Transformations.switchMap(activityLiveData){
-        Repository.sign(activity.aid,activity.rid)
-//        Repository.sign(1,"1")
+    var IdActivity = ArrayList<CheckActivityByIdData>()
+    var checkActivityByIdResponseLiveData = Transformations.switchMap(checkActivityByIdLiveData){ checkActivityById ->
+        Repository.checkActivityById(checkActivityById.aid, checkActivityById.rid)
     }
-    fun sign(activity: Activity){
-//    fun sign(){
-        activityLiveData.value = activityLiveData.value
+    fun checkActivityById(checkActivityById: CheckActivityById){
+        checkActivityByIdLiveData.value = checkActivityById
     }
+
 
     val activities = Transformations.switchMap(checkAllActivityLiveData){ checkAllActivity ->
         Repository.checkAllActivity(checkAllActivity.rid)
@@ -38,13 +53,11 @@ class ActivityViewModel: ViewModel() {
         checkAllActivityLiveData.value = checkAllActivity
     }
 
-    var activityById = Transformations.switchMap(checkActivityByIdLiveData){ checkActivityById ->
-        Repository.checkActivityById(checkActivityById.aid, checkActivityById.rid)
-    }
-    fun checkActivityById(checkActivityById: CheckActivityById){
-        checkActivityByIdLiveData.value = checkActivityById
-    }
 
+
+
+    var cancelSignLiveData = MutableLiveData<CancelSign>()
+    lateinit var cancelSign: CancelSign
     var cancelSignIsSuccessful = Transformations.switchMap(cancelSignLiveData){ cancelSign->
         Repository.cancelSign(cancelSign.aid, cancelSign.rid)
     }

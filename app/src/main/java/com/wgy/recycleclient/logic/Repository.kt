@@ -68,7 +68,7 @@ object Repository {
     fun finishOrder(oid: Int, id: String) = fire(Dispatchers.IO){
         val finishOrderResponse = RecycleClientNetwork.finishOrder(oid, id)
         if ("true" == finishOrderResponse.success){
-            Result.success(finishOrderResponse.data)
+            Result.success(finishOrderResponse.success)
         }else{
             Result.failure(RuntimeException("Response code is ${finishOrderResponse.success}"))
         }
@@ -104,7 +104,7 @@ object Repository {
     fun checkActivityByCategory(category: String, rid: String) = fire(Dispatchers.IO){
         val checkActivityByCategoryResponse = RecycleClientNetwork.checkActivityByCategory(category, rid)
         if ("true" == checkActivityByCategoryResponse.success){
-            Result.success(checkActivityByCategoryResponse.success)
+            Result.success(checkActivityByCategoryResponse.data)
         }else{
             Result.failure(RuntimeException("Response code is ${checkActivityByCategoryResponse.success}"))
         }

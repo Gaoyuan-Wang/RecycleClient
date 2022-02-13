@@ -4,6 +4,7 @@ import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -45,23 +46,23 @@ class LoginActivity : BaseActivity() {
         //点击登录按钮
         login.setOnClickListener {
             //获取用户名与密码并发送至服务器
-//            viewModel.login = Login(username.text.toString(),password.text.toString())
-//            viewModel.getLoginData(viewModel.login)
+            viewModel.login = Login(username.text.toString(),password.text.toString())
+            viewModel.getLoginData(viewModel.login)
             //以下五行为测试代码，正式运行时删除
-            val editor = getSharedPreferences("RegisterAccount", MODE_PRIVATE).edit()
-            editor.putString("id","000")
-            editor.apply()
-            intent= Intent(this,HomeActivity::class.java)
-            startActivity(intent)
+//            val editor = getSharedPreferences("RegisterAccount", MODE_PRIVATE).edit()
+//            editor.putString("id","000")
+//            editor.apply()
+//            intent= Intent(this,HomeActivity::class.java)
+//            startActivity(intent)
         }
 
         viewModel.loginResult.observe(this, { result ->
             val loginResult = result.getOrNull()
-            Toast.makeText(this, loginResult!![0].toString(), Toast.LENGTH_SHORT).show()
-            if (loginResult[0] == 1){
+            //Toast.makeText(this, loginResult!![0].toString(), Toast.LENGTH_SHORT).show()
+            if (null != loginResult){
                 //存储登录的用户ID至RegisterAccount文件
                 val editor = getSharedPreferences("RegisterAccount", MODE_PRIVATE).edit()
-                editor.putString("id",loginResult.toString())
+                editor.putString("id",loginResult[0])
                 editor.apply()
                 username.setText("")
                 password.setText("")
