@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">RecycleClient</string>
+    <string name="app_name">智回科技</string>
     <string name="fragment_recycle_appointment">预约</string>
     <string name="fragment_recycle_date">选择预约日期</string>
     <string name="fragment_recycle_time">选择预约时间</string>
