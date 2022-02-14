@@ -6,6 +6,7 @@ import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
@@ -58,8 +59,17 @@ class LoginActivity : BaseActivity() {
 
         viewModel.loginResult.observe(this, { result ->
             val loginResult = result.getOrNull()
-            //Toast.makeText(this, loginResult!![0].toString(), Toast.LENGTH_SHORT).show()
             if (null != loginResult){
+                //确认该用户是否在本机存储了邮寄信息
+                if (this.getSharedPreferences(
+                        "RegisterAccount",
+                        MODE_PRIVATE
+                    )?.getString("id", null).toString() != loginResult[0]
+                ){
+                    val editor = getSharedPreferences("MailingInformation", MODE_PRIVATE).edit()
+                    editor.putString("isSaved","false")
+                    editor.apply()
+                }
                 //存储登录的用户ID至RegisterAccount文件
                 val editor = getSharedPreferences("RegisterAccount", MODE_PRIVATE).edit()
                 editor.putString("id",loginResult[0])

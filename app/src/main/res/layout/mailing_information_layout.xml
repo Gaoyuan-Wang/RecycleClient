@@ -1,0 +1,68 @@
+<androidx.percentlayout.widget.PercentRelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/actionBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/white">
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="@string/activity_mailing_information_mailing"
+            android:textSize="20sp"/>
+        <Button
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/activity_mailing_information_back"
+            android:backgroundTint="#0B8B19"/>
+    </RelativeLayout>
+
+    <EditText
+        android:id="@+id/contact"
+        android:layout_width="200dp"
+        android:textSize="15sp"
+        android:layout_height="40dp"
+        android:hint="@string/activity_mailing_information_contact"
+        android:inputType="text"
+        android:lines="1"
+        android:layout_centerHorizontal="true"
+        app:layout_marginTopPercent="20%"/>
+
+    <EditText
+        android:id="@+id/location"
+        android:layout_width="200dp"
+        android:textSize="15sp"
+        android:layout_height="40dp"
+        android:hint="@string/activity_mailing_information_location"
+        android:inputType="text"
+        android:lines="1"
+        android:layout_centerHorizontal="true"
+        app:layout_marginTopPercent="30%"/>
+    <EditText
+        android:id="@+id/phone"
+        android:layout_width="200dp"
+        android:textSize="15sp"
+        android:layout_height="40dp"
+        android:hint="@string/activity_mailing_information_phone"
+        android:inputType="phone"
+        android:lines="1"
+        android:layout_centerHorizontal="true"
+        app:layout_marginTopPercent="40%"/>
+    <Button
+        android:id="@+id/confirm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#0B8B19"
+        android:layout_centerHorizontal="true"
+        app:layout_marginTopPercent="80%"
+        android:text="@string/activity_mailing_information_confirm"/>
+
+</androidx.percentlayout.widget.PercentRelativeLayout>

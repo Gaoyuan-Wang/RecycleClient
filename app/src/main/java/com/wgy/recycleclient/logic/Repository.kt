@@ -156,7 +156,7 @@ object Repository {
     }
 
     fun checkGiftByKey(key: String) = fire(Dispatchers.IO){
-        val checkGiftByKeyResponse = RecycleClientNetwork.checkAllGift(key)
+        val checkGiftByKeyResponse = RecycleClientNetwork.checkGiftByKey(key)
         if ("true" == checkGiftByKeyResponse.success){
             Result.success(checkGiftByKeyResponse.data)
         }else {

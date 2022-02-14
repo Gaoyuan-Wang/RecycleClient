@@ -9,7 +9,7 @@ data class CheckAllGiftResponse(
         val message: String
 )
 data class CheckAllGiftData(
-        val id:String,
+        val id: Int,
         val picture:String,
         val name:String,
         val point: Int,
@@ -23,7 +23,7 @@ data class CheckGiftByIdResponse(
         val message: String
 )
 data class CheckGiftByIdData(
-        val id:String,
+        val id: Int,
         val picture:String,
         val name:String,
         val point: Int,
@@ -37,7 +37,7 @@ data class CheckGiftByKeyResponse(
         val message: String
 )
 data class CheckGiftByKeyData(
-        val id:String,
+        val id: Int,
         val picture:String,
         val name:String,
         val point: Int,

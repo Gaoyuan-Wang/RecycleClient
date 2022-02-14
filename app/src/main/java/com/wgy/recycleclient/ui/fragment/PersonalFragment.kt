@@ -8,7 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.wgy.recycleclient.R
+import com.wgy.recycleclient.ui.activity.IntegralRecordActivity
 import com.wgy.recycleclient.ui.activity.LoginActivity
+import com.wgy.recycleclient.ui.activity.MailingInformationActivity
 import kotlinx.android.synthetic.main.fragment_personal.*
 
 class PersonalFragment: Fragment() {
@@ -22,9 +24,10 @@ class PersonalFragment: Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        initOnClickListener()
     }
 
-    fun initOnClickListener(){
+    private fun initOnClickListener(){
         exit.setOnClickListener {
             AlertDialog.Builder(activity).apply {
                 setMessage("退出后不会删除任何历史数据，下次登录依然可以使用本账号")
@@ -37,6 +40,16 @@ class PersonalFragment: Fragment() {
                 setNegativeButton("取消") { _, _ -> }
                 show()
             }
+        }
+
+        mailingInformation.setOnClickListener {
+            val intent = Intent(activity, MailingInformationActivity::class.java)
+            startActivity(intent)
+        }
+
+        integralRecord.setOnClickListener{
+            val intent = Intent(activity,IntegralRecordActivity::class.java)
+            startActivity(intent)
         }
     }
 }
