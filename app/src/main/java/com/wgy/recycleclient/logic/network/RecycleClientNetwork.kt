@@ -82,6 +82,9 @@ object RecycleClientNetwork {
     suspend fun checkGiftByKey(
             key: String
     ) = giftService.checkGiftByKey(key).await()
+    suspend fun checkOnesRGR(
+            id: String
+    ) = giftService.checkOnesRGR(id).await()
     suspend fun exchangeGift(
             id: String,
             rid: String,

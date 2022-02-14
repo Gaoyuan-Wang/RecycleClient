@@ -12,6 +12,7 @@ import com.wgy.recycleclient.R
 import com.wgy.recycleclient.logic.model.CheckGiftByKeyData
 import com.wgy.recycleclient.logic.model.ExchangeGift
 import com.wgy.recycleclient.ui.fragment.IntegralFragment
+import kotlinx.android.synthetic.main.fragment_integral.*
 
 class GiftKeyAdapter (private val fragment: IntegralFragment, private val giftList: List<CheckGiftByKeyData>):
     RecyclerView.Adapter<GiftKeyAdapter.ViewHolder>() {
@@ -62,12 +63,20 @@ class GiftKeyAdapter (private val fragment: IntegralFragment, private val giftLi
                             fragment.viewModel.location
                         )
                         fragment.viewModel.exchangeGift(fragment.viewModel.exchangeGift)
+                        fragment.searchRecyclerView.visibility = View.GONE
+                        fragment.viewModel.checkResidentById(fragment.viewModel.checkResidentById)
+                        fragment.searchGift.setText("")
                     }
-                    setNegativeButton("取 消") { _, _ -> }
+                    setNegativeButton("取 消") { _, _ ->
+                        fragment.searchRecyclerView.visibility = View.GONE
+                        fragment.searchGift.setText("")
+                    }
                     show()
                 }
             } else {
                 Toast.makeText(fragment.activity, "您尚未填写邮寄人信息", Toast.LENGTH_SHORT).show()
+                fragment.searchRecyclerView.visibility = View.GONE
+                fragment.searchGift.setText("")
             }
 
         }

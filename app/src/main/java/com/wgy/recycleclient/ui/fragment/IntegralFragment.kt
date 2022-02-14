@@ -79,16 +79,6 @@ class IntegralFragment:Fragment() {
             val exchangeGiftResult = result.getOrNull()
             if (null != exchangeGiftResult) {
                 viewModel.checkResidentById(viewModel.checkResidentById)
-                viewModel.checkResidentByIdResponseLiveData.observe(
-                    viewLifecycleOwner,
-                    { integralResult ->
-                        val checkResidentByIdResult = integralResult.getOrNull()
-                        if (null != checkResidentByIdResult) {
-                            integral.text = "${checkResidentByIdResult.point}"
-                        } else {
-                            result.exceptionOrNull()?.printStackTrace()
-                        }
-                    })
                 Toast.makeText(activity, "成功兑换商品", Toast.LENGTH_SHORT).show()
             } else {
                 Toast.makeText(activity, "兑换商品失败", Toast.LENGTH_SHORT).show()

@@ -164,6 +164,15 @@ object Repository {
         }
     }
 
+    fun checkOnesRGR(id: String) = fire(Dispatchers.IO){
+        val checkOnesRGRResponse = RecycleClientNetwork.checkOnesRGR(id)
+        if ("true" == checkOnesRGRResponse.success){
+            Result.success(checkOnesRGRResponse.data)
+        }else {
+            Result.failure(RuntimeException("Response code is ${checkOnesRGRResponse.success}"))
+        }
+    }
+
     fun exchangeGift(id: String, rid: String, gid: Int, contact:String, phone:String, location:String) = fire(Dispatchers.IO){
         val exchangeGiftResponse = RecycleClientNetwork.exchangeGift(id, rid, gid, contact, phone, location)
         if("true" == exchangeGiftResponse.success){

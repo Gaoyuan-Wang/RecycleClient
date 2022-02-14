@@ -31,6 +31,14 @@ interface GiftService {
     ): Call<CheckGiftByKeyResponse>
 
     /**
+     * @param id 用户名
+     */
+    @GET("/checkOnesRGR")
+    fun checkOnesRGR(
+        @Query("rid")id: String
+    ): Call<CheckOnesRGRResponse>
+
+    /**
      * @param id 用户ID
      * @param rid 用户ID
      * @param gid 礼物编号

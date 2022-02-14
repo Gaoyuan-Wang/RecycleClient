@@ -106,17 +106,26 @@ class RecycleFragment: Fragment() {
         //预约
         appointment.setOnClickListener{
             viewModel.location = address.text.toString()
-            viewModel.amount = Integer.parseInt(amount.text.toString())
-            AlertDialog.Builder(requireActivity()).apply {
-                setCancelable(false)
-                setMessage("请您确定预约信息：\n时间：${viewModel.date} ${viewModel.time}\n地址：${viewModel.location}\n数量：${viewModel.amount}")
-                Log.d("RecycleFragment",viewModel.id)
-                setPositiveButton("确 定"){ _, _->
-                    viewModel.appointment = Appointment(viewModel.id,viewModel.id,viewModel.location,viewModel.amount, viewModel.date + "-" + viewModel.time, 2 * viewModel.amount)
-                    viewModel.appointOrder(viewModel.appointment)
+            if("" != amount.text.toString()) {
+                viewModel.amount = Integer.parseInt(amount.text.toString())
+            }else{
+                viewModel.amount = 0}
+            if("" == viewModel.time || "" == viewModel.date){
+                Toast.makeText(activity,"请输入预约时间",Toast.LENGTH_SHORT).show()
+            }else if ("" == viewModel.location){
+                Toast.makeText(activity,"请输入预约地点",Toast.LENGTH_SHORT).show()
+            }else{
+                AlertDialog.Builder(requireActivity()).apply {
+                    setCancelable(false)
+                    setMessage("请您确定预约信息：\n时间：${viewModel.date} ${viewModel.time}\n地址：${viewModel.location}\n数量：${viewModel.amount}")
+                    Log.d("RecycleFragment",viewModel.id)
+                    setPositiveButton("确 定"){ _, _->
+                        viewModel.appointment = Appointment(viewModel.id,viewModel.id,viewModel.location,viewModel.amount, viewModel.date + "-" + viewModel.time, 2 * viewModel.amount)
+                        viewModel.appointOrder(viewModel.appointment)
+                    }
+                    setNegativeButton("取 消"){ _, _-> }
+                    show()
                 }
-                setNegativeButton("取 消"){ _, _-> }
-                show()
             }
         }
 

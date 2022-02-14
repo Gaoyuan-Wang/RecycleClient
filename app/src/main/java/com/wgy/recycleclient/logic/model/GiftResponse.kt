@@ -44,6 +44,22 @@ data class CheckGiftByKeyData(
         val stock: Int)
 data class CheckGiftByKey(val key:String)
 
+data class CheckOnesRGRResponse(
+        val success: String,
+        val code: Int,
+        val data: List<CheckOnesRGRData>,
+        val message: String
+)
+data class CheckOnesRGRData(
+        val id: Int,
+        val rid: String,
+        val gid: Int,
+        val location: String,
+        val contact: String,
+        val phone: String
+)
+data class CheckOnesRGR(val rid:String)
+
 data class ExchangeGiftResponse(
         val success: String,
         val code: Int,
