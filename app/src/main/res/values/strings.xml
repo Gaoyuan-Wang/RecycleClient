@@ -45,4 +45,7 @@
     <string name="activity_personal_information_phone">电话号码</string>
     <string name="activity_personal_information_like">获赞数</string>
     <string name="activity_main_slogan">智回科技</string>
+    <string name="activity_login_username">请输入手机号</string>
+    <string name="activity_login_password">请输入密码</string>
+    <string name="activity_login_login">登录</string>
 </resources>

@@ -11,6 +11,7 @@ import com.wgy.recycleclient.R
 import com.wgy.recycleclient.ui.activity.IntegralRecordActivity
 import com.wgy.recycleclient.ui.activity.LoginActivity
 import com.wgy.recycleclient.ui.activity.MailingInformationActivity
+import com.wgy.recycleclient.ui.activity.PersonalInformationActivity
 import kotlinx.android.synthetic.main.fragment_personal.*
 
 class PersonalFragment: Fragment() {
@@ -49,6 +50,11 @@ class PersonalFragment: Fragment() {
 
         integralRecord.setOnClickListener{
             val intent = Intent(activity,IntegralRecordActivity::class.java)
+            startActivity(intent)
+        }
+
+        personalInformation.setOnClickListener {
+            val intent = Intent(activity, PersonalInformationActivity::class.java)
             startActivity(intent)
         }
     }
